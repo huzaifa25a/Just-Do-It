@@ -13,7 +13,7 @@ mongo.connect(process.env.MONGO_URI)
 })
 
 app.use('/api/auth', require('./routes/authRoute'));
-// app.use('/api/todo', require('./routes/todoRoute'));
+app.use('/api/todo', require('./routes/todoRoute'));
 
 app.listen(process.env.PORT, () => {
     console.log('Server listening at port 3000',);
