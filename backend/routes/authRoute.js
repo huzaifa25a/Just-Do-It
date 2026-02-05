@@ -18,7 +18,7 @@ router.post('/signin', async (req, res) => {
             email: email,
             password: hashed
         })
-        const token = jwt.sign({name, email}, process.env.JWT_SECRET);
+        const token = jwt.sign({name, email}, process.env.JWT_SECRET, {expiresIn: '1h'});
         res.status(200).json({
             token,
             message: "User saved successfully!"
@@ -40,7 +40,11 @@ router.post('/login', async (req, res) => {
         if(!verify){
             return res.status(401).json({message: 'Not authorized'});
         }
-        const token = jwt.sign({name: user.name, email: user.email}, process.env.JWT_SECRET);
+        const token = jwt.sign(
+            {name: user.name, email: user.email}, 
+            process.env.JWT_SECRET, 
+            {expiresIn: '1h'}
+        );
         res.status(200).json({
             user: {name: user.name, email: user.email},
             token: token,
