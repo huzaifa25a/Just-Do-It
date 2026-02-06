@@ -1,6 +1,5 @@
 import React from 'react'
 import {Routes, Route} from 'react-router-dom'
-import Header from './components/Header'
 import Footer from './components/Footer'
 import Home from './pages/Home'
 import Features from './pages/Features'
@@ -14,9 +13,8 @@ import AddTodo from './pages/AddTodo'
 const App = () => {
   return (
     <>
-        <Header/>
         <Routes>
-            <Route path='/home' element={<Home/>}/>
+            <Route path='/' element={<Home/>}/>
             <Route path='/features' element={<Features/>}/>
             <Route path='/about' element={<About/>}/>
             <Route path='/contact' element={<Contact/>}/>
