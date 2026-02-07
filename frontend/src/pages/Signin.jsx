@@ -69,12 +69,13 @@ const Signin = () => {
 
         /> 
         <button 
-          className='px-2 py-1 bg-[#6fa5f7] hover:bg-[#579aff] text-white rounded-md shadow-sm hover:shadow-md duration-100 cursor-pointer'
+          className='px-2 py-1 w-50 bg-[#6fa5f7] hover:bg-[#579aff] text-white rounded-md shadow-sm hover:shadow-md duration-100 cursor-pointer'
           type='button'
           onClick={handleSignin}
         >
           Sign Up
         </button>
+        <span>Already have an account? <button className='cursor-pointer' onClick={() => navigate('/login')}>Login</button></span>
       </div>
     </div>
   )

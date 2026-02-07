@@ -1,4 +1,5 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import Header from '../components/Header'
 import bg from '../assets/bg-3.png'
 import checklist from '../assets/checklist.svg'
@@ -6,6 +7,7 @@ import graph from '../assets/graph.svg'
 import handshake from '../assets/handshake.svg'
 
 const Home = () => {
+  const navigate = useNavigate();
   const style = {
     backgroundImage: `url(${bg})`,
     height: 'full',
@@ -22,8 +24,8 @@ const Home = () => {
           </div>
           <span className='max-w-[545px] font-normal text-2xl text-gray-500'>Manage your daily tasks with ease. Stay on top of your work and increase productivity.</span>
           <div className='flex flex-row gap-5'>
-            <button className='px-2 py-1 bg-[#6fa5f7] hover:bg-[#76adff] text-white rounded-md shadow-sm hover:shadow-md duration-100 cursor-pointer'>Get Started</button>
-            <button className='px-2 py-1 bg-[#ffffff] hover:bg-[#ffffff] rounded-md hover:shadow-md duration-100 cursor-pointer border-2 border-gray-200'>Learn More</button>
+            <button className='px-2 py-1 bg-[#6fa5f7] hover:bg-[#76adff] text-white rounded-md shadow-sm hover:shadow-md duration-100 cursor-pointer' onClick={() => navigate('/signin')}>Get Started</button>
+            <button className='px-2 py-1 bg-[#ffffff] hover:bg-[#ffffff] rounded-md hover:shadow-md duration-100 cursor-pointer border-2 border-gray-200' onClick={() => navigate('/features')}>Learn More</button>
           </div>
         </div>
       </div>

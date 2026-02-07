@@ -1,4 +1,3 @@
-const { Timestamp } = require('bson');
 const mongo = require('mongoose');
 
 const userData = mongo.Schema({

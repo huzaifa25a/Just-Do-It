@@ -13,8 +13,8 @@ const Header = () => {
         navigate('/');
     }
   return (
-    <div className={`flex flex-row w-full justify-between p-8 ${isHome ? '' : 'bg-[#f1f6ff] border-b-2 border-gray-100'} mb-15`}>
-        <h2 className='font-bold text-[18px] cursor-pointer'>Just Do It</h2>
+    <div className={`text-[18px] flex flex-row w-full justify-between p-8 ${isHome ? '' : 'bg-[#f1f6ff] border-b-2 border-gray-100'} mb-13`}>
+        <h2 className='font-bold text-[22px] cursor-pointer'>Just Do It</h2>
         <div className='flex flex-row gap-12'>
             <NavLink 
                 to='/'

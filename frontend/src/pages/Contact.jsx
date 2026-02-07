@@ -20,7 +20,7 @@ const Contact = () => {
   return (
     <>
       <Header/>
-      <div className='w-full flex justify-center mt-20'>
+      <div className='w-full flex justify-center'>
       <div className='p-6 flex flex-col w-auto items-center justify-center bg-[#f1f6ff] shadow-md gap-3'>
         <h2 className='font-medium'>Contact us by filling form below</h2>
         <form onSubmit={handleSubmit} className='flex flex-col items-center gap-3'>
