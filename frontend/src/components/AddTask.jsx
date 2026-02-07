@@ -107,7 +107,7 @@ const AddTask = ({showTodoForm, setShowTodoForm}) => {
                         type='submit'
                     />
                     <button 
-                        className="bg-[#ff7070] hover:bg-[#de3939] text-white px-[6px] rounded-md cursor-pointer"
+                        className="bg-[#ff7070] hover:bg-[#de3939] text-white px-1.5 rounded-md cursor-pointer"
                         onClick={() => setShowTodoForm(false)}
                     >
                         Cancel

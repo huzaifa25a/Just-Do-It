@@ -7,6 +7,8 @@ import edit from "../assets/edit.svg";
 import bin from "../assets/delete.svg";
 import tick from '../assets/tick.svg'
 import cancel from '../assets/cancel.svg'
+import up from '../assets/up-arrow.svg'
+import down from '../assets/down-arrow.svg'
 
 const Todo = () => {
   const [Todo, setTodo] = useState([]);
@@ -30,6 +32,8 @@ const Todo = () => {
     tags: ''
   })
   const [showTodoForm, setShowTodoForm] = useState(false);
+  const [sortBy, setSortBy] = useState('');
+  const [Direction, setDirection] = useState('');
   const options = {
     year: 'numeric',
     month: 'short', // 'short' gives 'Feb'
@@ -108,6 +112,67 @@ const Todo = () => {
     }
   }
 
+  function sortHandle(){
+    console.log('hereee')
+    if(sortBy === 'Priority'){
+      const priorityOrder = {"High": 3, "Medium": 2, "Low": 1}
+      if(Direction === 'asc'){
+        console.log('inside')
+        const todo = [...Todo].sort((a,b) => {return priorityOrder[b.priority] - priorityOrder[a.priority]});
+        setTodo(todo)
+      }
+      else if(Direction === 'desc'){
+        const todo = [...Todo].sort((a,b) => {return priorityOrder[a.priority] - priorityOrder[b.priority]});
+        setTodo(todo)
+      }
+    }
+
+    if(sortBy === 'due_on'){
+      if(Direction === 'asc'){
+        const todo = [...Todo].sort((a,b) => {return new Date(b.due_on) - new Date(a.due_on)});
+        setTodo(todo);
+      }
+      if(Direction === 'desc'){
+        const todo = [...Todo].sort((a,b) => {return new Date(a.due_on) - new Date(b.due_on)});
+        setTodo(todo);
+      }
+    }
+
+    if(sortBy === 'createdAt'){
+      if(Direction === 'asc'){
+        const todo = [...Todo].sort((a,b) => {return new Date(b.createdAt) - new Date(a.createdAt)});
+        setTodo(todo);
+      }
+      if(Direction === 'desc'){
+        const todo = [...Todo].sort((a,b) => {return new Date(a.createdAt) - new Date(b.createdAt)});
+        setTodo(todo);
+      }
+    }
+
+    if(sortBy === 'updatedAt'){
+      if(Direction === 'asc'){
+        const todo = [...Todo].sort((a,b) => {return new Date(b.updatedAt) - new Date(a.updatedAt)});
+        setTodo(todo);
+      }
+      if(Direction === 'desc'){
+        const todo = [...Todo].sort((a,b) => {return new Date(a.updatedAt) - new Date(b.updatedAt)});
+        setTodo(todo);
+      }
+    }
+
+    if(sortBy === 'status'){
+      const statusOrder = {"Completed": 3, "In-Progress": 2, "Late": 1}
+      if(Direction === 'asc'){
+        const todo = [...Todo].sort((a,b) => {return statusOrder[b.status] - statusOrder[a.status]});
+        setTodo(todo);
+      }
+      if(Direction === 'desc'){
+        const todo = [...Todo].sort((a,b) => {return statusOrder[a.status] - statusOrder[b.status]});
+        setTodo(todo);
+      }
+    }
+  }
+
   return (
     <>
       <div
@@ -127,11 +192,71 @@ const Todo = () => {
               <table className="border-2 border-gray-200 rounded-4xl w-full">
                 <tr className="border-2 border-gray-300 bg-[#65a2fe] text-white">
                   <th className="text-center border-gray-300 p-2">To Do</th>
-                  <th className="text-center border-gray-300">Added</th>
-                  <th className="text-center border-gray-300">Last updated</th>
-                  <th className="text-center border-gray-300">Due on</th>
-                  <th className="text-center border-gray-300">Priority</th>
-                  <th className="text-center border-gray-300">Status</th>
+                  <th className="text-center border-gray-300">
+                    <div className="flex flex-row gap-5 items-center justify-center">
+                        <span>Added</span>
+                        <div className="flex flex-row gap-2">
+                          <button onClick={() => {setSortBy('createdAt'), setDirection('asc'), sortHandle()}}>
+                            <img src={up} className="h-4 cursor-pointer"/>
+                          </button>
+                          <button onClick={() => {setSortBy('createdAt'), setDirection('desc'), sortHandle()}}>
+                            <img src={down} className="h-4 cursor-pointer"/>
+                          </button>
+                        </div>
+                    </div>
+                  </th>
+                  <th className="text-center border-gray-300">
+                    <div className="flex flex-row gap-5 items-center justify-center">
+                      <span>Last Updated</span>
+                      <div className="flex flex-row gap-2">
+                        <button onClick={() => {setSortBy('updatedAt'), setDirection('asc'), sortHandle()}}>
+                          <img src={up} className="h-4 cursor-pointer"/>
+                        </button>
+                        <button onClick={() => {setSortBy('updatedAt'), setDirection('desc'), sortHandle()}}>
+                          <img src={down} className="h-4 cursor-pointer"/>
+                        </button>
+                      </div>
+                    </div>
+                  </th>
+                  <th className="text-center border-gray-300">
+                    <div className="flex flex-row gap-5 items-center justify-center">
+                      <span>Due On</span>
+                      <div className="flex flex-row gap-2">
+                        <button onClick={() => {setSortBy('due_on'), setDirection('asc'), sortHandle()}}>
+                          <img src={up} className="h-4 cursor-pointer"/>
+                        </button>
+                        <button onClick={() => {setSortBy('due_on'), setDirection('desc'), sortHandle()}}>
+                          <img src={down} className="h-4 cursor-pointer"/>
+                        </button>
+                      </div>
+                    </div>
+                  </th>
+                  <th className="text-center border-gray-300">
+                    <div className="flex flex-row gap-5 items-center justify-center">
+                      <span>Priority</span>
+                      <div className="flex flex-row gap-2">
+                        <button onClick={() => {setSortBy('Priority'), setDirection('asc'), sortHandle()}}>
+                          <img src={up} className="h-4 cursor-pointer"/>
+                        </button>
+                        <button onClick={() => {setSortBy('Priority'), setDirection('desc'), sortHandle()}}>
+                          <img src={down} className="h-4 cursor-pointer"/>
+                        </button>
+                      </div>
+                    </div>
+                  </th>
+                  <th className="text-center border-gray-300">
+                  <div className="flex flex-row gap-5 items-center justify-center">
+                      <span>Status</span>
+                      <div className="flex flex-row gap-2">
+                        <button onClick={() => {setSortBy('status'), setDirection('asc'), sortHandle()}}>
+                          <img src={up} className="h-4 cursor-pointer"/>
+                        </button>
+                        <button onClick={() => {setSortBy('status'), setDirection('desc'), sortHandle()}}>
+                          <img src={down} className="h-4 cursor-pointer"/>
+                        </button>
+                      </div>
+                    </div>
+                  </th>
                 </tr>
                 {Todo.map((todo, index) => (
                   <tr
@@ -230,7 +355,7 @@ const Todo = () => {
                                 <span className="font-normal">
                                   Note: {todo.notes}
                                 </span>
-                                <span className="font-light text-[14px] max-w-[250px] truncate">
+                                <span className="font-light text-[14px]">
                                   Tags: {todo.tags}
                                 </span>
                               </div>
@@ -287,7 +412,7 @@ const Todo = () => {
                                     <img src={tick} className="h-7"/>
                                 </button>
                                 <button 
-                                    className="bg-[#ff7070] hover:bg-[#de3939] px-[6px] rounded-md cursor-pointer"
+                                    className="bg-[#ff7070] hover:bg-[#de3939] px-1.5 rounded-md cursor-pointer"
                                     onClick={() => setUpdateDue('')}
                                 >
                                     <img src={cancel} className="h-4"/>

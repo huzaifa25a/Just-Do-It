@@ -31,7 +31,7 @@ const Login = () => {
   return (
     <div className='flex flex-col items-center'>
       <Header/>
-      <div className='flex flex-col items-center gap-5 bg-[#f1f6ff] border-2 border-gray-100 shadow-md rounded-4xl p-5 w-[400px]'>
+      <div className='flex flex-col items-center gap-5 bg-[#f1f6ff] border-2 border-gray-100 shadow-md rounded-4xl p-5 w-100'>
         <h2 className='font-medium text-[18px]'>Login</h2>
         <input 
           className='px-2 py-1 bg-white rounded-md w-68 border-2 border-[#a2c7ff] focus:outline-[#579aff]'
